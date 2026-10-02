@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday Ashmitha!</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#ffe3f0;--bg2:#fff1c9;--ink:#4a1d3f;--card:#ffffffd9;--pink:#ff4f9a;--sun:#ffb400;--sky:#3fb8ff;--mint:#2fd1a0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#3a1633;--bg2:#2b1f4d;--ink:#fff0f7;--card:#4b2347e6}}
+:root[data-theme="dark"]{--bg1:#3a1633;--bg2:#2b1f4d;--ink:#fff0f7;--card:#4b2347e6}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:linear-gradient(160deg,var(--bg1),var(--bg2));background-attachment:fixed;color:var(--ink);font:500 18px/1.45 "Baloo 2",system-ui,sans-serif;overflow-x:hidden}
+main{max-width:560px;margin:0 auto;padding:22px 18px 70px;text-align:center}
+h1{font-size:clamp(2.4rem,11vw,4rem);line-height:1;margin:.2em 0;font-weight:800;color:var(--pink)}
+h2{font-size:1.6rem;margin:0 0 .3em;font-weight:800}
+.card{background:var(--card);border-radius:26px;padding:22px 18px;margin:22px 0;box-shadow:0 8px 24px #ff4f9a33}
+label{display:block;text-align:left;font-weight:700;margin:12px 0 4px}
+input{font:inherit;width:100%;padding:11px 14px;border-radius:14px;border:2px solid #ff4f9a66;background:#fff;color:#4a1d3f}
+button{font:inherit;font-weight:800;background:var(--pink);color:#fff;border:0;border-radius:999px;padding:12px 26px;cursor:pointer;box-shadow:0 4px 0 #c42f72}
+button:active{transform:translateY(3px);box-shadow:0 1px 0 #c42f72}
+button:focus-visible,input:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+#msg{min-height:1.6em;font-weight:700;margin-top:12px}
+.hide{display:none!important}
+.frame{margin:18px auto 0;width:min(100%,360px);aspect-ratio:4/5;border:8px solid #fff;border-radius:22px;box-shadow:0 8px 24px #ff4f9a55;background:#ffffffaa;display:flex;align-items:center;justify-content:center;overflow:hidden;transform:rotate(-1.5deg)}
+.frame img{width:100%;height:100%;object-fit:cover;transition:opacity .35s}
+.frame img.fade{opacity:0}
+.frame video{width:100%;height:100%;object-fit:contain;background:#000}
+#cap{font-weight:700;margin-top:10px;min-height:1.5em}
+.sky{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin-top:10px}
+.bal{background:none;box-shadow:none;border-radius:50%;width:78px;height:92px;padding:0;font-size:3.3rem;animation:bob 2.6s ease-in-out infinite}
+.bal:nth-child(2n){animation-delay:.5s}.bal:nth-child(3n){animation-delay:1s}
+.bal:active{transform:none;box-shadow:none}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.wish{min-height:3.2em;font-weight:700;margin-top:10px}
+.candles button{background:none;box-shadow:none;padding:0 6px;font-size:2.2rem}
+.candles .out{filter:grayscale(1);opacity:.45}
+.cake{font-size:5.5rem;line-height:1}
+#finale{font-size:1.25rem}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
+@media(prefers-reduced-motion:reduce){.bal{animation:none}.frame img{transition:none}}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+
+<script>
+// ✏️ LIST YOUR FILE NAMES HERE (must match the files in the photos/ and video/ folders exactly)
+const PHOTOS=["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg", "06.jpg", "07.jpg", "08.jpg", "09.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg", "22.jpg", "23.jpg", "24.jpg", "25.jpg", "26.jpg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg", "32.jpg" ];
+const VIDEOS=["v01.mp4", "v02.mp4"];
+const CFG={
+  name:["ashmitha"],
+  birthday:"2010-10-02",
+  mom:["amma","mom"],
+  dad:["appa","dad"],
+  brother:["praveen"],
+  riddle:"Tell me a secret about you 😄 (anything works!)",
+  display:"Ashmitha",
+  from:"Your brother, Praveen",
+  gift:"What do you want for this birthday from me? 🎁 Tell me!"
+};
+</script>
+
+<main id="gate">
+  <h1>Hey, you! 👋</h1>
+  <p>Someone special made a surprise for you. First, prove it's really you!</p>
+  <div class="card">
+    <label for="n">Your name</label><input id="n" autocomplete="off">
+    <label for="b">Your birthday</label><input id="b" type="date">
+    <label for="m">Mom's name</label><input id="m" autocomplete="off">
+    <label for="d">Dad's name</label><input id="d" autocomplete="off">
+    <label for="br">Brother's name</label><input id="br" autocomplete="off">
+    <label for="r" id="rl"></label><input id="r" autocomplete="off">
+    <p><button id="go">Open my surprise 🎁</button></p>
+    <div id="msg" role="status"></div>
+  </div>
+</main>
+
+<main id="party" class="hide">
+  <h1 id="hb"></h1>
+  <p style="font-size:1.3rem">🎉 Today is all about you! 🎉</p>
+  <button id="boom">More confetti! 🎊</button>
+  <div class="frame"><span id="ph">Tap the button to see your memories 📸</span><img id="pic" alt="A memory of you" class="hide"><video id="vid" class="hide" controls playsinline preload="metadata"></video></div>
+  <div id="cap"></div>
+
+  <div class="card">
+    <h2>Pop the balloons 🎈</h2>
+    <p>Each one hides a little wish for you.</p>
+    <div class="sky" id="sky"></div>
+    <div class="wish" id="wish"></div>
+  </div>
+
+  <div class="card">
+    <h2>Make a wish 🎂</h2>
+    <p>Tap the candles to blow them out.</p>
+    <div class="candles" id="candles"></div>
+    <div class="cake">🎂</div>
+    <div class="wish" id="cakeMsg"></div>
+  </div>
+
+  <div class="card hide" id="finale">
+    <h2>Your surprise 🎁</h2>
+    <p id="gift"></p>
+    <p>Happy birthday! Lots of love, <b id="from"></b> ❤️</p>
+  </div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+function boom(n=170){
+  const c=$("cv"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+  const cols=["#ff4f9a","#ffb400","#3fb8ff","#2fd1a0","#a56bff"];
+  const p=Array.from({length:n},()=>({x:c.width/2,y:c.height/3,vx:(Math.random()-.5)*15,vy:-3-Math.random()*12,s:5+Math.random()*7,c:cols[Math.random()*5|0],r:Math.random()*6}));
+  let f=0;(function t(){x.clearRect(0,0,c.width,c.height);p.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.vy+=.35;q.r+=.2;x.fillStyle=q.c;x.save();x.translate(q.x,q.y);x.rotate(q.r);x.fillRect(-q.s/2,-q.s/2,q.s,q.s*.6);x.restore()});if(++f<130)requestAnimationFrame(t);else x.clearRect(0,0,c.width,c.height)})();
+}
+const ok=(v,a)=>a.map(s=>s.toLowerCase()).includes(v.trim().toLowerCase());
+$("rl").textContent=CFG.riddle;
+let tries=0;
+function enter(){
+  $("gate").classList.add("hide");$("party").classList.remove("hide");scrollTo(0,0);boom();
+}
+$("go").onclick=()=>{
+  const checks=[ok($("n").value,CFG.name),$("b").value===CFG.birthday,ok($("m").value,CFG.mom),ok($("d").value,CFG.dad),ok($("br").value,CFG.brother),$("r").value.trim().length>0];
+  const bad=checks.filter(v=>!v).length;
+  if(!bad){enter();return}
+  tries++;
+  if(tries>=3){$("msg").textContent="Okay okay, you're clearly the birthday star. Come in! 😄";setTimeout(enter,1500);return}
+  $("msg").textContent=bad===1?"So close! One answer is off. 🤏":bad+" answers are off. Are you sure you're you? 🤨";
+};
+$("hb").textContent="Happy Birthday, "+CFG.display+"!";
+$("gift").textContent=CFG.gift;$("from").textContent=CFG.from;
+
+// Photos: loaded from the Python server (/api/photos), shown one by one
+let photos=[],pi=0;
+photos=PHOTOS.map(n=>"photos/"+n);
+let videos=[];
+videos=VIDEOS.map(n=>"video/"+n);
+function nextPhoto(){
+  const img=$("pic"),v=$("vid"),total=photos.length+videos.length;
+  if(!total){$("ph").textContent="Add photos to the 'photos' folder 📷";return}
+  const idx=pi;pi=(pi+1)%total;
+  v.pause();$("ph").classList.add("hide");
+  if(idx>=photos.length){            // last item: the video
+    img.classList.add("hide");
+    v.src=videos[idx-photos.length];v.classList.remove("hide");v.play().catch(()=>{});
+    $("cap").textContent="Special video "+(idx-photos.length+1)+" of "+videos.length+" 🎬💖";
+    return;
+  }
+  v.classList.add("hide");
+  const wait=img.classList.contains("hide")?0:300;
+  img.classList.add("fade");
+  setTimeout(()=>{img.src=photos[idx];img.classList.remove("hide","fade");
+    $("cap").textContent="Memory "+(idx+1)+" of "+photos.length+" 💖"},wait);
+}
+$("boom").onclick=()=>{boom();nextPhoto()};
+
+const WISHES=["May your day be as awesome as you are! 🌟","Extra cake. No diet. Zero guilt. 🍰","Laughs, hugs, and the best adventures ahead. 🌍","You make everyone's life brighter. ☀️","Another year of being the best! 🏆","Today, you are the boss of everything. 👑"];
+let popped=0,lit=5;
+function maybeFinale(){if(popped>=6&&lit===0){$("finale").classList.remove("hide");$("finale").scrollIntoView({behavior:"smooth"});boom(260)}}
+WISHES.forEach((w,i)=>{const b=document.createElement("button");b.className="bal";b.textContent="🎈";b.setAttribute("aria-label","Balloon "+(i+1));
+  b.style.filter=`hue-rotate(${i*60}deg)`;
+  b.onclick=()=>{b.textContent="💥";b.disabled=true;$("wish").textContent=w;popped++;boom(50);setTimeout(()=>b.style.visibility="hidden",350);maybeFinale()};
+  $("sky").appendChild(b)});
+for(let i=0;i<5;i++){const b=document.createElement("button");b.textContent="🕯️";b.setAttribute("aria-label","Candle "+(i+1));
+  b.onclick=()=>{if(b.classList.contains("out"))return;b.classList.add("out");lit--;
+    $("cakeMsg").textContent=lit?lit+" more to go…":"Wish made! It's coming true. ✨";
+    if(!lit){boom();maybeFinale()}};
+  $("candles").appendChild(b)}
+</script>
+</body>
+</html>
